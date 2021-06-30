@@ -27,23 +27,37 @@ const StatisticsHeader = () => {
   );
 };
 
-const StatisticsData = (props) => {
+const StatisticsData = ({ name, stat }) => {
   return (
     <>
       <p>
-        {props.name} {props.stat}
+        {name} {stat}
       </p>
     </>
   );
 };
 
-const StatisticsSection = (props) => {
+const StatisticsSection = ({ good, neutral, bad }) => {
+  const goodScore = 1;
+  const neutralScore = 0;
+  const badScore = -1;
+  const total = good + neutral + bad;
+  const average =
+    goodScore * good + neutralScore * neutral + (badScore * bad) / 3;
+  const percentPositive = good / total;
+
   return (
     <>
       <StatisticsHeader />
-      <StatisticsData name={"good"} stat={props.good} />
-      <StatisticsData name={"neutral"} stat={props.neutral} />
-      <StatisticsData name={"bad"} stat={props.bad} />
+      <StatisticsData name={"good"} stat={good} />
+      <StatisticsData name={"neutral"} stat={neutral} />
+      <StatisticsData name={"bad"} stat={bad} />
+      <StatisticsData name={"all"} stat={total} />
+      <StatisticsData name={"average"} stat={average} />
+      <StatisticsData
+        name={"positive"}
+        stat={isNaN(percentPositive) ? "0" : percentPositive}
+      />
     </>
   );
 };
