@@ -46,6 +46,15 @@ const StatisticsSection = ({ good, neutral, bad }) => {
     goodScore * good + neutralScore * neutral + (badScore * bad) / 3;
   const percentPositive = good / total;
 
+  if (good === 0 && bad === 0 && neutral === 0) {
+    return (
+      <>
+        <StatisticsHeader />
+        <p>No feedback given</p>
+      </>
+    );
+  }
+
   return (
     <>
       <StatisticsHeader />
