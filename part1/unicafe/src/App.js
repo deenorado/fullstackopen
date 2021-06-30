@@ -30,9 +30,10 @@ const StatisticsHeader = () => {
 const StatisticsData = ({ name, stat }) => {
   return (
     <>
-      <p>
-        {name} {stat}
-      </p>
+      <tr>
+        <td>{name}</td>
+        <td>{stat}</td>
+      </tr>
     </>
   );
 };
@@ -58,15 +59,17 @@ const StatisticsSection = ({ good, neutral, bad }) => {
   return (
     <>
       <StatisticsHeader />
-      <StatisticsData name={"good"} stat={good} />
-      <StatisticsData name={"neutral"} stat={neutral} />
-      <StatisticsData name={"bad"} stat={bad} />
-      <StatisticsData name={"all"} stat={total} />
-      <StatisticsData name={"average"} stat={average} />
-      <StatisticsData
-        name={"positive"}
-        stat={isNaN(percentPositive) ? "0" : percentPositive}
-      />
+      <table>
+        <StatisticsData name={"good"} stat={good} />
+        <StatisticsData name={"neutral"} stat={neutral} />
+        <StatisticsData name={"bad"} stat={bad} />
+        <StatisticsData name={"all"} stat={total} />
+        <StatisticsData name={"average"} stat={average} />
+        <StatisticsData
+          name={"positive"}
+          stat={isNaN(percentPositive) ? "0" : percentPositive}
+        />
+      </table>
     </>
   );
 };
