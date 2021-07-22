@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
+const api_key = process.env.REACT_APP_API_KEY;
+
 const Country = ({ filtered, selectedCountry, setSelectedCountry }) => {
   const [weatherData, setWeatherData] = useState("");
 
@@ -12,7 +14,7 @@ const Country = ({ filtered, selectedCountry, setSelectedCountry }) => {
     const getData = async () => {
       await axios
         .get(
-          `http://api.openweathermap.org/data/2.5/weather?q=${selectedCountry}&units=metric&appid=d3884dabe71efcac4c1908992fed50f3`
+          `http://api.openweathermap.org/data/2.5/weather?q=${selectedCountry}&units=metric&appid=${api_key}`
         )
         .then((result) => {
           setWeatherData(result.data);
