@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Form from "./components/Form";
 import Persons from "./components/Persons";
 import Filter from "./components/Filter";
@@ -6,6 +7,13 @@ import Filter from "./components/Filter";
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [baseState, setBaseState] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:3001/persons").then((result) => {
+      setBaseState(result.data);
+      setPersons(result.data);
+    });
+  }, []);
 
   return (
     <div>
